@@ -1,0 +1,534 @@
+openapi: 3.0.3
+info:
+  title: Teams_PY
+  version: 1.0.0
+  description: Your project description
+paths:
+  /humans/human/:
+    post:
+      operationId: humans_human_create
+      description: Create User
+      tags:
+      - humans
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HumanCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HumanCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HumanCreate'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanCreate'
+          description: ''
+  /humans/human/{id}:
+    get:
+      operationId: humans_human_retrieve
+      description: Get User by it's ID and if you have enough permission you can manage
+        it
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - humans
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanDetail'
+          description: ''
+    put:
+      operationId: humans_human_update
+      description: Get User by it's ID and if you have enough permission you can manage
+        it
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - humans
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HumanDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HumanDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HumanDetail'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanDetail'
+          description: ''
+    patch:
+      operationId: humans_human_partial_update
+      description: Get User by it's ID and if you have enough permission you can manage
+        it
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - humans
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedHumanDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedHumanDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedHumanDetail'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanDetail'
+          description: ''
+    delete:
+      operationId: humans_human_destroy
+      description: Get User by it's ID and if you have enough permission you can manage
+        it
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - humans
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /humans/humans/:
+    get:
+      operationId: humans_humans_list
+      description: Get all Users with their Teams
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      tags:
+      - humans
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HumanDetail'
+          description: ''
+  /teams/team/:
+    post:
+      operationId: teams_team_create
+      description: Create Team
+      tags:
+      - teams
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TeamCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TeamCreate'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamCreate'
+          description: ''
+  /teams/team/{id}:
+    get:
+      operationId: teams_team_retrieve
+      description: |-
+        Get Team, if you have enough permission - manage it
+        To extend team, add Human IDs to it.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - teams
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamManage'
+          description: ''
+    put:
+      operationId: teams_team_update
+      description: |-
+        Get Team, if you have enough permission - manage it
+        To extend team, add Human IDs to it.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - teams
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamManage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TeamManage'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TeamManage'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamManage'
+          description: ''
+    patch:
+      operationId: teams_team_partial_update
+      description: |-
+        Get Team, if you have enough permission - manage it
+        To extend team, add Human IDs to it.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - teams
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTeamManage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTeamManage'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTeamManage'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamManage'
+          description: ''
+    delete:
+      operationId: teams_team_destroy
+      description: |-
+        Get Team, if you have enough permission - manage it
+        To extend team, add Human IDs to it.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - teams
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /teams/team/append/{id}:
+    get:
+      operationId: teams_team_append_retrieve
+      description: To extend team, add Human ID to it.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - teams
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddHuman'
+          description: ''
+    put:
+      operationId: teams_team_append_update
+      description: To extend team, add Human ID to it.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - teams
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddHuman'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AddHuman'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AddHuman'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddHuman'
+          description: ''
+  /teams/teams/:
+    get:
+      operationId: teams_teams_list
+      description: Get all Teams
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - teams
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamDetail'
+          description: ''
+components:
+  schemas:
+    AddHuman:
+      type: object
+      properties:
+        members:
+          type: array
+          items:
+            type: integer
+    HumanCreate:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        password:
+          type: string
+          maxLength: 128
+      required:
+      - email
+      - password
+      - username
+    HumanDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        team:
+          type: array
+          items:
+            type: integer
+      required:
+      - email
+      - id
+      - team
+      - username
+    PatchedHumanDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        team:
+          type: array
+          items:
+            type: integer
+    PatchedTeamManage:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+    TeamCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+      required:
+      - name
+    TeamDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        members:
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - members
+      - name
+    TeamManage:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+      required:
+      - name
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

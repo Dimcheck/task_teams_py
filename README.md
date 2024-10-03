@@ -11,6 +11,7 @@ docker compose up --build
 Go to Main endpoints <br>
   * [Humans](http://127.0.0.1:8000/humans/) <br>
   * [Teams](http://127.0.0.1:8000/teams/) <br>
+  * [Swagger](http://127.0.0.1:8000/api/schema/swagger-ui/#/) <br>
 
 
 
