@@ -9,7 +9,6 @@ class TeamCreateSerializer(serializers.ModelSerializer):
 
 
 class TeamDetailSerializer(serializers.ModelSerializer):
-    # human = serializers.ReadOnlyField(source='human.username')
     members = serializers.StringRelatedField(many=True)
 
     class Meta:
@@ -20,6 +19,12 @@ class TeamDetailSerializer(serializers.ModelSerializer):
 class AddHumanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
-        fields = ['name', 'members']
+        fields = ['members']
 
+
+class TeamManageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Team
+        fields = ['name']
 
