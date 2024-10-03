@@ -25,10 +25,7 @@ class HumanRetrieve(generics.RetrieveUpdateDestroyAPIView):
 
     serializer_class = HumanDetailSerializer
     queryset = Human.objects
-    permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly,
-        # custom_permissions.IsTheUserOrReadOnly,
-    ]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class HumanList(generics.ListAPIView):
