@@ -1,6 +1,6 @@
 from teams.serializers import TeamCreateSerializer, TeamDetailSerializer, AddHumanSerializer, TeamManageSerializer
 from teams.models import Team
-from rest_framework import generics, views, status, permissions
+from rest_framework import generics, permissions, filters
 
 
 class TeamAppend(generics.RetrieveUpdateAPIView):
@@ -40,5 +40,8 @@ class TeamList(generics.ListAPIView):
     """
 
     serializer_class = TeamDetailSerializer
-    queryset = Team.objects.all()
+    queryset = Team.objects
+
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
 

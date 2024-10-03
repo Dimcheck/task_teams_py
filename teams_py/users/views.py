@@ -1,7 +1,7 @@
 from users.serializers import HumanCreateSerializer, HumanDetailSerializer
 from users.models import Human
 from django.contrib.auth.hashers import make_password
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, filters
 
 
 class HumanCreate(generics.CreateAPIView):
@@ -24,7 +24,7 @@ class HumanRetrieve(generics.RetrieveUpdateDestroyAPIView):
     """
 
     serializer_class = HumanDetailSerializer
-    queryset = Human.objects.all()
+    queryset = Human.objects
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
         # custom_permissions.IsTheUserOrReadOnly,
@@ -35,7 +35,8 @@ class HumanList(generics.ListAPIView):
     """Get all Users with their Teams"""
 
     serializer_class = HumanDetailSerializer
-    queryset = Human.objects.all()
+    queryset = Human.objects
 
-
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['username', 'email']
 

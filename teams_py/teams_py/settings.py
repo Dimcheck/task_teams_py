@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'teams',
 
     #third-party
-    # 'django-filters',
+    'django_filters',
     'rest_framework',
 
 ]
@@ -133,3 +133,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'users.Human'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
