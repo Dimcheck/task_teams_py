@@ -1,7 +1,8 @@
 services:
   web:
     build: .
-    command: poetry run python teams_py/manage.py runserver 0.0.0.0:8000
+    command:  sh -c "poetry run python teams_py/manage.py migrate &&
+             poetry run python teams_py/manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
       - ./data/db.sqlite3:/app/db.sqlite3
