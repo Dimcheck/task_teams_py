@@ -10,7 +10,7 @@ class TeamAppend(generics.RetrieveUpdateAPIView):
 
     http_method_names = ('get', 'put')
     serializer_class = AddHumanSerializer
-    queryset = Team.objects
+    queryset = Team.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
@@ -21,7 +21,7 @@ class TeamManage(generics.RetrieveUpdateDestroyAPIView):
     """
 
     serializer_class = TeamManageSerializer
-    queryset = Team.objects
+    queryset = Team.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
@@ -40,7 +40,7 @@ class TeamList(generics.ListAPIView):
     """
 
     serializer_class = TeamDetailSerializer
-    queryset = Team.objects
+    queryset = Team.objects.all()
 
     filter_backends = [filters.SearchFilter]
     search_fields = ['name']

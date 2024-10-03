@@ -24,7 +24,7 @@ class HumanRetrieve(generics.RetrieveUpdateDestroyAPIView):
     """
 
     serializer_class = HumanDetailSerializer
-    queryset = Human.objects
+    queryset = Human.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
@@ -32,7 +32,7 @@ class HumanList(generics.ListAPIView):
     """Get all Users with their Teams"""
 
     serializer_class = HumanDetailSerializer
-    queryset = Human.objects
+    queryset = Human.objects.all()
 
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ['username', 'email']
